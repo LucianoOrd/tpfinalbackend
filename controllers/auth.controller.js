@@ -25,7 +25,7 @@ authCtrl.verifyTokenAdmins = async(req, res, next) => {
         next();
     } else {
         res.json({
-            message: 'No autorizado - Solo Usuarios Administrativos' + 'su perfil es : ' +
+            message: 'No autorizado - Solo Usuarios Administrativos' + ' su perfil es : ' +
                 req.userRol
         })
     }

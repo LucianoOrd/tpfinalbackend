@@ -4,8 +4,8 @@ const Alumno = require('./alumno');
 const Entrenador = require('./entrenador');
 
 const ClaseSchema = new Schema({
-    tipoClase: { type: String, requiere: true },
-    cuposDisponibles: { type: String, require: true },
+    tipoClase: { type: String, required: true },
+    cuposDisponibles: { type: String, required: true },
     alumno: {
         type: Schema.Types.ObjectId,
         ref: Alumno,

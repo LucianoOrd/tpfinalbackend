@@ -4,8 +4,8 @@ const Rol = require('./rol')
 const { Schema } = mongoose;
 
 const UsuarioSchema = new Schema({
-    nombreUsuario: { type: String, requiered: true },
-    password: { type: String, requiered: true },
+    nombreUsuario: { type: String, required: true },
+    password: { type: String, required: true },
     rol: {
         type: Schema.Types.ObjectId,
         ref: Rol,

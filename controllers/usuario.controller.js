@@ -91,7 +91,7 @@ usuarioCtrl.loginUsuario = async (req, res) => {
                 msg: "Usuario no encontrado"
             })
         } else {
-            const unToken = jwt.sign({ id: user._id }, "secretkey");
+            const unToken = jwt.sign({ id: user._id, rol: user.rol.nombreRol }, "secretkey");
             res.json({
                 status: 1,
                 msg: "Usuario encontrado",

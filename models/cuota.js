@@ -5,8 +5,8 @@ const Clase = require('./clase');
 const Alumno = require('./alumno');
 
 const CuotaSchema = new Schema({
-    fechaDePago: { type: Date, requiere: true },
-    fechaCaducidad: { type: Date, require: true },
+    fechaDePago: { type: Date, required: true },
+    fechaCaducidad: { type: Date, required: true },
     importe: {
         type: Schema.Types.Decimal128, // Utilizar Decimal128 para almacenar números decimales
         required: true,
