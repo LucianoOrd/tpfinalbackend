@@ -5,6 +5,7 @@ const router = express.Router();
 //definimos las rutas para la gestion de ejercicio
 router.get('/', ejercicioCtrl.getEjercicios);
 router.post('/', ejercicioCtrl.createEjercicio);
+router.get('/detalle/:id', ejercicioCtrl.getEjercicioId);
 router.put('/:id', ejercicioCtrl.editEjercicio);
 router.delete('/:id', ejercicioCtrl.deleteEjercicio);
 //exportamos el modulo de rutas

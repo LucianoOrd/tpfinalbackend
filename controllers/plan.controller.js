@@ -1,22 +1,22 @@
-const Alumno = require('../models/alumno')
+const Plan = require('../models/plan')
 
-const alumnoCtrl = {};
+const planCtrl = {};
 
-alumnoCtrl.getAlumnos = async (req, res) => {
-    var alumno = await Alumno.find().populate('rol').populate('plan');
-    res.json(alumno);
+planCtrl.getPlanes = async (req, res) => {
+    var plan = await Plan.find().populate('entrenador').populate('alumno').populate('ejercicios');
+    res.json(plan);
 }
 
-alumnoCtrl.getAlumnoId = async (req, res) => {
+planCtrl.getPlanId = async (req, res) => {
     try {
-        const alumno = await Alumno.findById(req.params.id);
-        if (!alumno) {
+        const plan = await Plan.findById(req.params.id);
+        if (!plan) {
             return res.status(404).json({
                 status: '0',
-                msg: 'Alumno no encontrado'
+                msg: 'Plan no encontrada'
             });
         }
-        res.json(alumno);
+        res.json(plan);
     } catch (error) {
         res.status(400).json({
             status: '0',
@@ -25,14 +25,14 @@ alumnoCtrl.getAlumnoId = async (req, res) => {
     }
 };
 
-alumnoCtrl.createAlumno = async (req, res) => {
+planCtrl.createPlan = async (req, res) => {
 
-    var alumno = new Alumno(req.body);
+    var plan = new Plan(req.body);
     try {
-        await alumno.save();
+        await plan.save();
         res.status(200).json({
             'status': '1',
-            'msg': 'Alumno guardado.'
+            'msg': 'Plan guardado.'
         })
     } catch (error) {
         res.status(400).json({
@@ -42,13 +42,13 @@ alumnoCtrl.createAlumno = async (req, res) => {
     }
 }
 
-alumnoCtrl.editAlumno = async (req, res) => {
-    const valumno = new Alumno(req.body);
+planCtrl.editPlan = async (req, res) => {
+    const vplan = new Plan(req.body);
     try {
-        await Alumno.updateOne({ _id: req.body._id }, valumno);
+        await Plan.updateOne({ _id: req.body._id }, vplan);
         res.json({
             'status': '1',
-            'msg': 'Alumno updated'
+            'msg': 'Plan updated'
         })
     } catch (error) {
         res.status(400).json({
@@ -58,12 +58,12 @@ alumnoCtrl.editAlumno = async (req, res) => {
     }
 }
 
-alumnoCtrl.deleteAlumno = async (req, res) => {
+planCtrl.deletePlan = async (req, res) => {
     try {
-        await Alumno.deleteOne({ _id: req.params.id });
+        await Plan.deleteOne({ _id: req.params.id });
         res.json({
             status: '1',
-            msg: 'Alumno removed'
+            msg: 'Plan removed'
         })
     } catch (error) {
         res.status(400).json({
@@ -73,4 +73,4 @@ alumnoCtrl.deleteAlumno = async (req, res) => {
     }
 }
 
-module.exports = alumnoCtrl;
+module.exports = planCtrl;

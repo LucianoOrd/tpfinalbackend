@@ -1,4 +1,4 @@
-const encargadoCtrl = require('../controllers/encargado.controller');
+const encargadoCtrl = require('./../controllers/encargado.controller');
 
 const express = require('express');
 const router = express.Router();

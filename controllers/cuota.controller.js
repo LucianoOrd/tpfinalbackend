@@ -12,7 +12,7 @@ cuotaCtrl.getCuotaId = async (req, res) => {
         if (!cuota) {
             return res.status(404).json({
                 status: '0',
-                msg: 'Cuota no encontrado'
+                msg: 'Cuota no encontrada'
             });
         }
         res.json(cuota);

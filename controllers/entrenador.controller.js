@@ -7,6 +7,24 @@ entrenadorCtrl.getEntrenadores = async (req, res) => {
     res.json(entrenador);
 }
 
+entrenadorCtrl.getEntrenadorId = async (req, res) => {
+    try {
+        const entrenador = await Entrenador.findById(req.params.id);
+        if (!entrenador) {
+            return res.status(404).json({
+                status: '0',
+                msg: 'Entrenador no encontrado'
+            });
+        }
+        res.json(entrenador);
+    } catch (error) {
+        res.status(400).json({
+            status: '0',
+            msg: 'Error procesando la operación.'
+        });
+    }
+};
+
 entrenadorCtrl.createEntrenador = async (req, res) => {
 
     var entrenador = new Entrenador(req.body);

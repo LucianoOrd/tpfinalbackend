@@ -1,20 +1,21 @@
 const mongoose = require('mongoose');
-const {Schema} = mongoose;
-// const Alumno = require ('./alumno');
-// const Entrenado = require ('./entrenador');
+const { Schema } = mongoose;
+const Alumno = require('./alumno');
+const Entrenador = require('./entrenador');
+
 const ClaseSchema = new Schema({
-    tipoClase: {type: String, requiere: true},
-    cuposDisponibles: {type: String, require: true},
+    tipoClase: { type: String, requiere: true },
+    cuposDisponibles: { type: String, require: true },
     alumno: {
         type: Schema.Types.ObjectId,
-        ref: Alumno, 
+        ref: Alumno,
         required: true
     },
     entrenador: {
         type: Schema.Types.ObjectId,
-        ref: Entrenador, 
+        ref: Entrenador,
         required: true
     }
 })
 
-module.exports = mongoose.models.Clase || mongoose.model('Clase',ClaseSchema);
+module.exports = mongoose.models.Clase || mongoose.model('Clase', ClaseSchema);

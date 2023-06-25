@@ -1,4 +1,4 @@
-const claseCtrl = require('../controllers/clase.controller');
+const claseCtrl = require('./../controllers/clase.controller');
 
 const express = require('express');
 const router = express.Router();

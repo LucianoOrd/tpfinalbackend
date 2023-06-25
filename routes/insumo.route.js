@@ -1,4 +1,4 @@
-const insumoCtrl = require('../controllers/insumo.controller');
+const insumoCtrl = require('./../controllers/insumo.controller');
 
 const express = require('express');
 const router = express.Router();

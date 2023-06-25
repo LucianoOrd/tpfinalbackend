@@ -7,6 +7,24 @@ ejercicioCtrl.getEjercicios = async (req, res) => {
     res.json(ejercicio);
 }
 
+ejercicioCtrl.getEjercicioId = async (req, res) => {
+    try {
+        const ejercicio = await Ejercicio.findById(req.params.id);
+        if (!ejercicio) {
+            return res.status(404).json({
+                status: '0',
+                msg: 'Ejercicio no encontrado'
+            });
+        }
+        res.json(ejercicio);
+    } catch (error) {
+        res.status(400).json({
+            status: '0',
+            msg: 'Error procesando la operación.'
+        });
+    }
+};
+
 ejercicioCtrl.createEjercicio = async (req, res) => {
 
     var ejercicio = new Ejercicio(req.body);
