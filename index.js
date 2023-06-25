@@ -11,6 +11,12 @@ app.use('/api/asistencia', require('./routes/asistencia.route.js'));
 app.use('/api/ejercicio', require('./routes/ejercicio.route.js'));
 app.use('/api/entrenador', require('./routes/entrenador.route.js'));
 app.use('/api/rutina', require('./routes/rutina.route.js'));
+app.use('/api/administrativo', require('./routes/administrativo.route.js'));
+app.use('/api/encargado', require('./routes/encargado.route.js'));
+app.use('/api/categoria', require('./routes/categoria.route.js'));
+app.use('/api/insumo', require('./routes/insumo.route.js'));
+app.use('/api/clase', require('./routes/clase.route.js'));
+app.use('/api/cuota', require('./routes/cuota.route.js'));
 //setting
 app.set('port', process.env.PORT || 3000);
 //starting the server
