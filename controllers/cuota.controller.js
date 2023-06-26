@@ -2,13 +2,13 @@ const Cuota = require('../models/cuota');
 const cuotaCtrl = {};
 
 cuotaCtrl.getCuota = async (req, res) => {
-    var cuotas = await Cuota.find();
+    var cuotas = await Cuota.find().populate('alumno').populate('clase');
     res.json(cuotas);
 };
 
 cuotaCtrl.getCuotaId = async (req, res) => {
     try {
-        const cuota = await Cuota.findById(req.params.id);
+        const cuota = await Cuota.findById(req.params.id).populate('alumno').populate('clase');
         if (!cuota) {
             return res.status(404).json({
                 status: '0',

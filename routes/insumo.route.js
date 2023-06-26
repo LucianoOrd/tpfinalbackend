@@ -1,12 +1,13 @@
 const insumoCtrl = require('./../controllers/insumo.controller');
+const autCtrl = require('./../controllers/auth.controller');
 
 const express = require('express');
 const router = express.Router();
 
-router.get('/', insumoCtrl.getInsumo);
-router.post('/', insumoCtrl.createInsumo);
-router.get('/detalle/:id', insumoCtrl.getInsumoId)
-router.put('/:id', insumoCtrl.editInsumo);
-router.delete('/:id', insumoCtrl.deleteInsumo);
+router.get('/', autCtrl.verifyTokenAdmins, insumoCtrl.getInsumo);
+router.post('/', autCtrl.verifyTokenAdmins, insumoCtrl.createInsumo);
+router.get('/detalle/:id', autCtrl.verifyTokenAdmins, insumoCtrl.getInsumoId)
+router.put('/:id', autCtrl.verifyTokenAdmins, insumoCtrl.editInsumo);
+router.delete('/:id', autCtrl.verifyTokenAdmins, insumoCtrl.deleteInsumo);
 
 module.exports = router;

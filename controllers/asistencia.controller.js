@@ -7,6 +7,24 @@ asistenciaCtrl.getAsistencias = async (req, res) => {
     res.json(asistencia);
 }
 
+asistenciaCtrl.gerAsistenciaFecha = async (req, res) => {
+    try {
+        const Asistencia = await Asistencia.find(req.params.fechaAsistencia).populate('alumno').populate('clase');
+        if (!alumno) {
+            return res.status(404).json({
+                status: '0',
+                msg: 'Alumno no encontrado'
+            });
+        }
+        res.json(alumno);
+    } catch (error) {
+        res.status(400).json({
+            status: '0',
+            msg: 'Error procesando la operación.'
+        });
+    }
+};
+
 asistenciaCtrl.createAsistencia= async (req, res) => {
 
     var asistencia = new Asistencia(req.body);
