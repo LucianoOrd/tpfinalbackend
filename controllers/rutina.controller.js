@@ -7,6 +7,24 @@ rutinaCtrl.getRutinas = async (req, res) => {
     res.json(rutina);
 }
 
+rutinaCtrl.getRutinaId = async (req, res) => {
+    try {
+        const rutina = await Rutina.findById(req.params.id);
+        if (!rutina) {
+            return res.status(404).json({
+                status: '0',
+                msg: 'Rutina no encontrada'
+            });
+        }
+        res.json(rutina);
+    } catch (error) {
+        res.status(400).json({
+            status: '0',
+            msg: 'Error procesando la operación.'
+        });
+    }
+};
+
 rutinaCtrl.createRutina = async (req, res) => {
 
     var rutina = new Rutina(req.body);

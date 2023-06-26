@@ -1,11 +1,13 @@
 const mongoose = require('mongoose');
-const {Schema} = mongoose;
+const { Schema } = mongoose;
 const Decimal = require('decimal.js'); // Importar la biblioteca decimal.js
-const Clase = require ('./clase');
-// const Alumno = require ('./alumno');
+const Clase = require('./clase');
+const Alumno = require('./alumno');
+
 const CuotaSchema = new Schema({
-    fechaDePago: {type: Date, requiere: true},
-    fechaCaducidad: {type: Date, require: true},
+    fechaDePago: { type: Date, required: true },
+    fechaCaducidad: { type: Date, required: true },
+    pagado: { type: Boolean, required: true },
     importe: {
         type: Schema.Types.Decimal128, // Utilizar Decimal128 para almacenar números decimales
         required: true,
@@ -14,14 +16,14 @@ const CuotaSchema = new Schema({
     },
     clase: {
         type: Schema.Types.ObjectId,
-        ref: Clase, 
+        ref: Clase,
         required: true
     },
     alumno: {
         type: Schema.Types.ObjectId,
-        ref: Alumno, 
+        ref: Alumno,
         required: true
     }
 })
 
-module.exports = mongoose.models.Cuota || mongoose.model('Cuota',CuotaSchema);
+module.exports = mongoose.models.Cuota || mongoose.model('Cuota', CuotaSchema);

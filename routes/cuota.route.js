@@ -1,4 +1,4 @@
-const cuotaCtrl = require('../controllers/cuota.controller');
+const cuotaCtrl = require('./../controllers/cuota.controller');
 
 const express = require('express');
 const router = express.Router();
