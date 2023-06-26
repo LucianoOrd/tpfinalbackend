@@ -3,7 +3,7 @@ const Alumno = require('../models/alumno')
 const alumnoCtrl = {};
 
 alumnoCtrl.getAlumnos = async (req, res) => {
-    var alumno = await Alumno.find().populate('rol').populate('plan');
+    var alumno = await Alumno.find().populate('usuario').populate('plan');
     res.json(alumno);
 }
 
