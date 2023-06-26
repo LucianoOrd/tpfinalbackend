@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Rol = require('./rol')
+const Usuario = require('./usuario');
 const Plan = require('./plan')
 const { Schema } = mongoose;
 
@@ -15,6 +15,10 @@ const AlumnoSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: Plan,
         required: true
+    },
+    usuario: {
+        type: Schema.Types.ObjectId,
+        ref: Usuario
     },
     fechaInicio: { type: Date, required: true }
 })
