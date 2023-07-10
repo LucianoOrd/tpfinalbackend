@@ -24,7 +24,6 @@ insumoCtrl.getInsumoId = async (req, res) => {
     }
 };
 
-
 insumoCtrl.createInsumo = async (req, res) => {
     console.log(req.body);
     var insumo = new Insumo(req.body);
@@ -77,5 +76,21 @@ insumoCtrl.editInsumo = async (req, res) => {
         });
     }
 };
+
+insumoCtrl.modificarInsumos = async (req, res) => {
+    try {
+        const insumos = req.body; // Array de insumos recibido desde el frontend
+
+        // Iterar sobre el array de insumos y actualizar el stock en la base de datos
+        for (let insumo of insumos) {
+            await Insumo.findByIdAndUpdate(insumo._id, { 'stock': insumo.stock - 1 });
+        }
+
+        res.json({ message: 'Stock de insumos actualizado correctamente' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error en el servidor' });
+    }
+}
 
 module.exports = insumoCtrl;
