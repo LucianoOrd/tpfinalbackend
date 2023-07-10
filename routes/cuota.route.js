@@ -5,7 +5,8 @@ const router = express.Router();
 
 router.get('/', cuotaCtrl.getCuota);
 router.post('/', cuotaCtrl.createCuota);
-router.get('/detalle/:id', cuotaCtrl.getCuotaId)
+router.get('/detalle/:id', cuotaCtrl.getCuotaId);
+router.get('/alumno/:dni', cuotaCtrl.getCuotaByDni);
 router.put('/:id', cuotaCtrl.editCuota);
 router.delete('/:id', cuotaCtrl.deleteCuota);
 

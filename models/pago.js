@@ -6,6 +6,7 @@ const PagoSchema = new Schema({
     listaInsumo: [{type: Schema.Types.ObjectId, 
         ref: Insumo, 
         required: true }]
+
 })
 
 module.exports = mongoose.models.Pago || mongoose.model('Pago', PagoSchema);

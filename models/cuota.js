@@ -17,7 +17,6 @@ const CuotaSchema = new Schema({
     clase: {
         type: Schema.Types.ObjectId,
         ref: Clase,
-        required: true
     },
     alumno: {
         type: Schema.Types.ObjectId,

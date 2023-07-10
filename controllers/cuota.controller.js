@@ -24,6 +24,37 @@ cuotaCtrl.getCuotaId = async (req, res) => {
     }
 };
 
+cuotaCtrl.getCuotaByDni = async (req, res) => {
+
+    var cuotas = await Cuota.find().populate({
+        path: 'alumno', match: { dni: req.params.dni},
+        select: 'dni nombre apellido',
+        populate: {
+            path: 'plan',
+            select: 'nombrePlan'
+        }
+    }).exec();
+    cuotas = cuotas.filter(cuota => cuota.alumno !== null)
+    res.json(cuotas);
+};
+
+cuotaCtrl.getCuotaId = async (req, res) => {
+    try {
+        const cuota = await Cuota.findById(req.params.id).populate('alumno').populate('clase');
+        if (!cuota) {
+            return res.status(404).json({
+                status: '0',
+                msg: 'Cuota no encontrada'
+            });
+        }
+        res.json(cuota);
+    } catch (error) {
+        res.status(400).json({
+            status: '0',
+            msg: 'Error procesando la operación.'
+        });
+    }
+};
 
 cuotaCtrl.createCuota = async (req, res) => {
     console.log(req.body);
