@@ -2,7 +2,7 @@ const Insumo = require('../models/insumo');
 const insumoCtrl = {};
 
 insumoCtrl.getInsumo = async (req, res) => {
-    var insumos = await Insumo.find();
+    var insumos = await Insumo.find().populate('categoria');
     res.json(insumos);
 };
 

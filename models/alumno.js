@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Usuario = require('./usuario');
-const Plan = require('./plan')
+const Plan = require('./plan');
+const ejercicio = require('./ejercicio');
 const { Schema } = mongoose;
 
 const AlumnoSchema = new Schema({
@@ -14,12 +15,12 @@ const AlumnoSchema = new Schema({
     plan: {
         type: Schema.Types.ObjectId,
         ref: Plan,
-        required: true
     },
     usuario: {
         type: Schema.Types.ObjectId,
         ref: Usuario
     },
+    ejercicios: {type: Object},
     fechaInicio: { type: Date, required: true }
 })
 module.exports = mongoose.models.Alumno || mongoose.model('Alumno', AlumnoSchema)

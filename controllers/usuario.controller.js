@@ -54,6 +54,7 @@ usuarioCtrl.createAlumnoYUsuario = async (req, res) => {
     }
     try {//el método findOne retorna un objeto que cumpla con los criterios de busqueda
         const user = await Usuario.findOne(criteria).populate("rol");
+        console.log("USUARIO ENCONTRADOOO: ", user);
         if (!user) {
             res.json({
                 status: 0,

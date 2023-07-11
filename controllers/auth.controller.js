@@ -10,6 +10,7 @@ authCtrl.verifyTokenAdmins = async(req, res, next) => {
     }
     //se espera formato -> Bearer XXXX , interesa el token en pos(1) del array
     const token = req.headers.authorization.split(' ')[1];
+    console.log("--------------------TOKEN ADMIIINNN:", token);
     if (token === null) {
         res.json({ message: 'no Unauthorized request.' })
     }
@@ -90,6 +91,7 @@ authCtrl.verifyTokenEntrenador = async (req, res, next) => {
 
 //agregado por nico
 authCtrl.verifyToken = async (req, res, next) => {
+    console.log("**********************ENTRA ACA EN VERIFY TOKEN**********************");
     //las llamadas a la API debieran tener un header authorization
     if (!req.headers.authorization) {
         res.json({ 'status': '0', 'msg': 'Unauthorized request.' })
@@ -113,10 +115,12 @@ authCtrl.getDataUser = async (req, res, next) => {
     if (token == null) {
         res.json({ 'status': '0', 'msg': 'Unauthorized request.' });
     }
+
+    console.log("TOKEN EN GET DATA USER: ", token);
     const payload = jwt.verify(token, "secretkey");
     if (payload.rol == 'alumno'){
         console.log(payload);
-        const alumnooo = await  alumno.find({usuario: payload.id})
+        const alumnooo = await  alumno.find({usuario: payload.id}).populate('plan')
         console.log("Alumno: ", alumnooo);
       res.status(200).json(alumnooo)
     }

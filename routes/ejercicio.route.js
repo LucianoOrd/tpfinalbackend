@@ -7,6 +7,7 @@ const router = express.Router();
 router.get('/', autCtrl.verifyTokenEntrenador, ejercicioCtrl.getEjercicios);
 router.post('/', autCtrl.verifyTokenEntrenador, ejercicioCtrl.createEjercicio);
 router.get('/detalle/:id', ejercicioCtrl.getEjercicioId);
+router.post('/asignarRutina/:id', ejercicioCtrl.asignarRutina);
 router.put('/:id', autCtrl.verifyTokenEntrenador, ejercicioCtrl.editEjercicio);
 router.delete('/:id', autCtrl.verifyTokenEntrenador, ejercicioCtrl.deleteEjercicio);
 //exportamos el modulo de rutas
