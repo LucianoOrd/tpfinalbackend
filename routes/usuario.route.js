@@ -13,5 +13,13 @@ router.delete('/:id', autCtrl.verifyTokenAdmins, usuarioCtrl.deleteUsuario);
 
 router.post('/login', usuarioCtrl.loginUsuario);
 
+//obtener datos de usuario usuario.route
+router.get('/getUser',  autCtrl.getDataUser);
+//obtener el payload
+router.get('/verify',  autCtrl.verifyToken);
+router.post('/create', /* autCtrl.verifyTokenAdmins, */ usuarioCtrl.createAlumnoYUsuario)
+router.post('/', /* autCtrl.verifyTokenAdmins, */ usuarioCtrl.createUsuario);
+router.post('/login', usuarioCtrl.loginUsuario);
 //exportacion del modulo de rutas
+
 module.exports = router;

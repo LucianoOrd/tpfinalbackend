@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const authCtrl = {}
-
+const alumno = require('../models/alumno');
 
 /*Verifica el prefil del usuario logeado, solo deja seguir si es ADMINISTRATIVO*/
 authCtrl.verifyTokenAdmins = async(req, res, next) => {
@@ -86,6 +86,41 @@ authCtrl.verifyTokenEntrenador = async (req, res, next) => {
                 req.userRol
         })
     }
+}
+
+//agregado por nico
+authCtrl.verifyToken = async (req, res, next) => {
+    //las llamadas a la API debieran tener un header authorization
+    if (!req.headers.authorization) {
+        res.json({ 'status': '0', 'msg': 'Unauthorized request.' })
+    }
+    //se espera formato -> Bearer XXX, interesa el token en pos(1) del arrayTexto
+    const token = req.headers.authorization.split(' ')[1];
+    if (token == null) {
+        res.json({ 'status': '0', 'msg': 'Unauthorized request.' });
+    }
+    const payload = jwt.verify(token, "secretkey");
+    res.status(200).json(payload)
+}
+
+authCtrl.getDataUser = async (req, res, next) => {
+    //las llamadas a la API debieran tener un header authorization
+    if (!req.headers.authorization) {
+        res.json({ 'status': '0', 'msg': 'Unauthorized request.' })
+    }
+    //se espera formato -> Bearer XXX, interesa el token en pos(1) del arrayTexto
+    const token = req.headers.authorization.split(' ')[1];
+    if (token == null) {
+        res.json({ 'status': '0', 'msg': 'Unauthorized request.' });
+    }
+    const payload = jwt.verify(token, "secretkey");
+    if (payload.rol == 'alumno'){
+        console.log(payload);
+        const alumnooo = await  alumno.find({usuario: payload.id})
+        console.log("Alumno: ", alumnooo);
+      res.status(200).json(alumnooo)
+    }
+
 }
 
 
