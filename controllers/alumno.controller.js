@@ -25,6 +25,17 @@ alumnoCtrl.getAlumnoId = async (req, res) => {
     }
 };
 
+alumnoCtrl.generarPlan = (req, res) =>{
+try {
+    const {plan} = req.body
+    const {id} = req.params
+    Alumno.findByIdAndUpdate(id, {plan})
+    res.status(200).json({message: 'plan creado a luamuno', status: '1'})
+} catch (error) {
+    console.log("ERROROR AL ASINGNAR POLAN:  ", error);
+    res.status(500).json({message: 'plan NNOO creado a luamuno', status: '0'})
+}
+}
 alumnoCtrl.createAlumno = async (req, res) => {
 
     var alumno = new Alumno(req.body);

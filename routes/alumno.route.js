@@ -6,6 +6,7 @@ const router = express.Router();
 //definimos las rutas para la gestion de alumno
 router.get('/',/*  autCtrl.verifyTokenAdmins, */ alumnoCtrl.getAlumnos);
 router.post('/', autCtrl.verifyTokenAdmins, alumnoCtrl.createAlumno);
+router.post('/plan/:id',  alumnoCtrl.generarPlan);
 router.get('/detalle/:id', alumnoCtrl.getAlumnoId);
 
 router.put('/:id', alumnoCtrl.editAlumno);

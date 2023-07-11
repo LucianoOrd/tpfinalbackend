@@ -3,7 +3,7 @@ const Plan = require('../models/plan')
 const planCtrl = {};
 
 planCtrl.getPlanes = async (req, res) => {
-    var plan = await Plan.find().populate('entrenador').populate('alumno').populate('ejercicios');
+    var plan = await Plan.find();
     res.json(plan);
 }
 

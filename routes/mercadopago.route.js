@@ -8,7 +8,7 @@ mercadopago.configure({
     //access token de prueba de mi cuenta ajsj deberian usar de su cuenta pero fijense si funca 
     access_token: "APP_USR-1546690050022270-012519-8faec084bd0e1627edb05a0877a7aadd-1295500452"
 })
-router.get("/crearpago", (req, res) => {
+router.post("/crearpago", (req, res) => {
   const { precio, descripcion } = req.body;
   let preference = {
     back_urls: {
@@ -36,7 +36,8 @@ router.get("/crearpago", (req, res) => {
             res.status(500).send('Error al generar el código QR');
           } else {
             // Envia el código QR como respuesta
-            res.status(200).json({message: qrDataURL, status: '1'});
+            res.status(200).json({message: qrDataURL, status: '100', enlance: initPoint});
+
           }
         });
     })
